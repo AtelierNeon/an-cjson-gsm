@@ -154,6 +154,7 @@ if (WIN32)
 	set( CMAKE_STATIC_LIBRARY_PREFIX "lib" )
 endif()
 
+option (CJSON_WITHOUT_APPS "Build cJSON without apps." OFF)
 option (CJSON_WITHOUT_INSTALL_ALL "Build cJSON without installing all artifacts." OFF)
 option (CJSON_WITHOUT_INSTALL_FILES "Build cJSON without installing files." OFF)
 option (CJSON_WITHOUT_INSTALL_HEADERS "Build cJSON without installing headers." OFF)
@@ -211,7 +212,12 @@ if(ENABLE_CJSON_VERSION_SO)
 endif()
 
 #cJSON_Utils
-option(ENABLE_CJSON_UTILS "Enable building the cJSON_Utils library." ON)
+option(ENABLE_CJSON_UTILS "Enable building the cJSON_Utils library." OFF)
+if(CJSON_WITHOUT_APPS)
+    set(ENABLE_CJSON_UTILS OFF)
+else()
+    set(ENABLE_CJSON_UTILS ON)
+endif()
 if(ENABLE_CJSON_UTILS)
     set(CJSON_UTILS_LIB cjson_utils)
 
