@@ -150,8 +150,11 @@ if (WIN32)
 endif (WIN32)
 
 if (WIN32)
-	set( CMAKE_SHARED_LIBRARY_PREFIX "lib" )
-	set( CMAKE_STATIC_LIBRARY_PREFIX "lib" )
+    set(CMAKE_SHARED_LIBRARY_PREFIX "lib")
+    set(CMAKE_STATIC_LIBRARY_PREFIX "lib")
+endif()
+if (UNIX)
+    set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 endif()
 
 option (CJSON_WITHOUT_APPS "Build cJSON without apps." OFF)
