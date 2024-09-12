@@ -321,7 +321,7 @@ if(ENABLE_CJSON_TEST)
 endif()
 
 #Create the uninstall target
-option(ENABLE_CJSON_UNINSTALL "Enable creating uninstall target" ON)
+option(ENABLE_CJSON_UNINSTALL "Enable creating uninstall target" OFF)
 if(ENABLE_CJSON_UNINSTALL)
   add_custom_target(uninstall "${CMAKE_COMMAND}" -P
     "${PROJECT_SOURCE_DIR}/library_config/uninstall.cmake")
