@@ -111,10 +111,12 @@ foreach(compiler_flag ${custom_compiler_flags})
     #remove problematic characters
     string(REGEX REPLACE "[^a-zA-Z0-9]" "" current_variable ${compiler_flag})
 
-    CHECK_C_COMPILER_FLAG(${compiler_flag} "FLAG_SUPPORTED_${current_variable}")
-    if (FLAG_SUPPORTED_${current_variable})
-        set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${compiler_flag}")
-    endif()
+    if (NOT BUILD_WITH_COMPILER_PRECHECK)
+        CHECK_C_COMPILER_FLAG(${compiler_flag} "FLAG_SUPPORTED_${current_variable}")
+        if (FLAG_SUPPORTED_${current_variable})
+            set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${compiler_flag}")
+        endif ()
+    endif ()
 endforeach()
 
 option(BUILD_SHARED_LIBS "Build shared libraries" ON)
